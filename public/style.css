@@ -1,0 +1,407 @@
+html, body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #C9F2C7, #ACECA1, #96BE8C, #629460, #243119);
+    background-attachment: fixed;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.auth-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+}
+
+input {
+    margin-bottom: 15px;
+    padding: 14px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.auth-container input,
+.auth-container button {
+    margin-bottom: 20px;
+}
+
+button {
+    background: linear-gradient(135deg, #96BE8C, #629460);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #243119, #629460);
+}
+
+#add-expense-btn,
+#logout-btn {
+    background: linear-gradient(135deg, #3B5D40, #243119);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#add-expense-btn:hover,
+#logout-btn:hover {
+    background: linear-gradient(135deg, #2A402D, #1A2417);
+}
+
+.tab-switcher {
+    display: flex;
+    position: relative;
+    border-radius: 8px;
+    background: #e5e5e5;
+    margin-bottom: 20px;
+    height: 45px;
+}
+
+.tab-btn {
+    flex: 1;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 2;
+    padding: 0;
+    line-height: 45px;
+    color: #243119;
+}
+
+.tab-btn:hover {
+    background: none;
+}
+
+.tab-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #96BE8C, #629460);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.tab-switcher:hover .tab-btn.active ~ .tab-slider {
+    background: linear-gradient(135deg, #243119, #629460);
+}
+
+.tab-btn.active {
+    color: white;
+}
+
+.tab-btn.active:hover {
+    background: none;
+}
+
+.form-content {
+    display: none;
+    flex-direction: column;
+}
+
+.form-content.active {
+    display: flex;
+}
+
+.welcome-text {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.welcome-text h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #243119;
+}
+
+.welcome-text p {
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #629460;
+}
+
+.delete-btn {
+    margin-left: 25px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: inherit;
+}
+
+.update-btn {
+    margin-left: 2px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: inherit;
+}
+
+.header-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+#budget-section {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+#logout-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    padding: 8px 15px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#delete-selected-btn,
+#delete-all-btn {
+    padding: 8px 15px;
+    background: linear-gradient(135deg, #8B0000, #4A0000);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-right: 10px;
+    margin-top: 15px;
+    display: inline-block;
+    z-index: 5;
+}
+
+#delete-selected-btn:hover,
+#delete-all-btn:hover {
+    background: linear-gradient(135deg, #4A0000, #2A0000);
+}
+
+#expenses-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.currency-selector-container {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+#currency-select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    appearance: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 100px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23629460" width="18px" height="18px"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 18px;
+}
+
+#currency-select:hover {
+    border-color: #629460;
+}
+
+#currency-select:focus {
+    border-color: #96BE8C;
+    box-shadow: 0 0 0 3px rgba(150, 190, 140, 0.4);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+#budget-total {
+    display: inline-block;
+    margin: 0;
+}
+
+.main-content-split {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 95% !important;
+    max-width: 1400px !important;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.left-panel {
+    width: 70%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    min-height: 500px;
+}
+
+.right-panel {
+    width: 30%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    min-height: 300px;
+    
+    /* FIX: Add flexbox to center the content (your calculator) inside the panel */
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+}
+
+.total-expenses-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+#budget-total {
+    display: inline-block;
+    margin: 0;
+}
+
+/* Calculator Styling */
+.calculator {
+    /* Reverting to a flat background color to remove the gradient layer */
+    background-color: #f0f0f0;
+    
+    /* Harmonizing the border-radius with other elements */
+    border-radius: 12px;
+    
+    /* Removing the multi-layered shadow for a simpler, cleaner look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    
+    padding: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.calculator-screen {
+    width: 100%;
+    height: 60px;
+    border: none;
+    
+    /* FIX 4: Add a subtle gradient based on original black color and a matching border-radius */
+    background: linear-gradient(to bottom, #111111, #252525);
+    border-radius: 12px;
+    
+    color: #fff;
+    text-align: right;
+    padding: 10px 20px;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Ensures padding is included in the width, fixing the unrounded edge */
+}
+
+.calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* FIX 5: Use a single style for all the green number and function buttons */
+.calculator-keys button {
+    height: 60px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    
+    /* The primary green button color from your image */
+    background: linear-gradient(to bottom, #5d8e5c, #6c9c6b);
+    color: #fff;
+}
+.calculator-keys button:hover {
+    background: linear-gradient(to top, #5d8e5c, #6c9c6b);
+}
+
+/* Specific styles for the OPERATORS and AC button */
+.calculator-keys .operator, .calculator-keys .clear {
+    /* A slightly lighter, more vibrant green for the operator row */
+    background: linear-gradient(to bottom, #72a571, #80b37f);
+    color: #fff;
+}
+.calculator-keys .operator:hover, .calculator-keys .clear:hover {
+    background: linear-gradient(to top, #72a571, #80b37f);
+}
+
+/* Equal sign button (same style as other buttons in your image) */
+.calculator-keys .equal-sign {
+    background: linear-gradient(to bottom, #5d8e5c, #6c9c6b);
+    color: #fff;
+    grid-column: span 2;
+}
+.calculator-keys .equal-sign:hover {
+    background: linear-gradient(to top, #5d8e5c, #6c9c6b);
+}
+
+/* Backspace button (same style as other buttons in your image) */
+.calculator-keys .backspace {
+    background: linear-gradient(to bottom, #5d8e5c, #6c9c6b);
+    color: #fff;
+    grid-column: span 2;
+}
+.calculator-keys .backspace:hover {
+    background: linear-gradient(to top, #5d8e5c, #6c9c6b);
+}
+.calculator-wrapper {
+    background-color: #C9F2C7; /* A solid light green to match the gradient start */
+    border-radius: 12px; /* Matches the calculator's border-radius for consistency */
+    padding: 10px; /* Adjust as needed for the desired spacing */
+}

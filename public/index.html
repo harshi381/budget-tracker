@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Budget Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>SpendSense</h1>
+
+    <div id="auth-section" class="auth-container">
+        <div class="welcome-text">
+            <h2>Welcome!</h2>
+            <p>Track your budget easily. Sign up or log in to get started.</p>
+        </div>
+        <div class="tab-switcher">
+            <button class="tab-btn active" data-tab="login">Login</button>
+            <button class="tab-btn" data-tab="signup">Signup</button>
+            <div class="tab-slider"></div>
+        </div>
+        <div id="login-form" class="form-content active">
+            <input type="email" id="login-email" placeholder="Email">
+            <input type="password" id="login-password" placeholder="Password">
+            <button id="login-btn">Login</button>
+        </div>
+        <div id="signup-form" class="form-content">
+            <input type="email" id="signup-email" placeholder="Email">
+            <input type="password" id="signup-password" placeholder="Password">
+            <button id="signup-btn">Sign Up</button>
+        </div>
+    </div>
+
+<div id="logged-in-container" style="display:none;">
+    <div class="header-container">
+        <button id="logout-btn">Logout</button>
+    </div>
+<div class="main-content-split">
+    <div class="left-panel">
+        <input type="text" id="expense-desc" placeholder="Description">
+        <input type="date" id="expense-date">
+        <input type="number" id="expense-amount" placeholder="Amount in selected currency">
+        <button id="add-expense-btn">Add Expense</button>
+
+        <div class="total-expenses-container">
+            <h3 id="budget-total">Total Expenses: <span id="current-total-amount">0</span></h3>
+            <div class="currency-selector-container">
+                <label for="currency-select" class="sr-only">Select Currency:</label>
+                <select id="currency-select">
+                    <option value="INR" selected>INR (₹)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                </select>
+            </div>
+        </div>
+
+        <h3>Your Expenses</h3>
+        <ul id="expenses-list"></ul>
+
+        <button id="delete-selected-btn" style="display:none;">Delete Selected</button>
+        <button id="delete-all-btn" style="display:none;">Delete All</button>
+    </div>
+    <div class="right-panel">
+        <div class="calculator">
+            <input type="text" class="calculator-screen" value="0" disabled />
+           
+            <div class="calculator-keys">
+    <!-- Row 1: Operators -->
+    <button type="button" class="operator" value="+">+</button>
+    <button type="button" class="operator" value="-">-</button>
+    <button type="button" class="operator" value="*">×</button>
+    <button type="button" class="operator" value="/">÷</button>
+
+    <!-- Row 2: Numbers -->
+    <button type="button" value="7">7</button>
+    <button type="button" value="8">8</button>
+    <button type="button" value="9">9</button>
+    <button type="button" value="4">4</button>
+    
+    <!-- Row 3: Numbers -->
+    <button type="button" value="5">5</button>
+    <button type="button" value="6">6</button>
+    <button type="button" value="1">1</button>
+    <button type="button" value="2">2</button>
+    
+    <!-- Row 4: Numbers, Decimal, Clear (AC) -->
+    <button type="button" value="3">3</button>
+    <button type="button" value="0">0</button>
+    <button type="button" class="decimal" value=".">.</button>
+    <button type="button" class="clear" value="clear">AC</button>
+
+    <!-- Row 5: Equal Sign (span 2) and Backspace (span 2) -->
+    <!-- These two buttons will now form the entire last row -->
+    <button type="button" class="backspace" value="backspace">←</button> 
+    <button type="button" class="equal-sign" value="=">=</button>
+    
+</div></div>
+            
+
+
+
+        </div>
+    </div>
+</div>
+ </div>
+
+
+
+    <div id="budget-section" style="display:none;">
+        <div class="header-container">
+            <button id="logout-btn">Logout</button>
+    </div></div> 
+   
+   
+    
+    
+    
+    <script src="tabs.js"></script>
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
